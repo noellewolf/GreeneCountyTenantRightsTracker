@@ -3,6 +3,8 @@
 A small [Next.js](https://nextjs.org) app that fetches the public Greene County, MO
 court docket feed and displays relevant data
 
+![Greene County Tenant Case Tracker](docs/screenshot.png)
+
 ## Development
 
 ```bash
