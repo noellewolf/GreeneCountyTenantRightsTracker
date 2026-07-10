@@ -10,11 +10,15 @@ const COLUMNS: { key: keyof Case; label: string }[] = [
   { key: "floorID", label: "Floor" },
   { key: "timeStart", label: "Hearing Time" },
   { key: "judgeName", label: "Judge" },
+  { key: "dateFiled", label: "Date FIled" },
+  { key: "caseType", label: "Case Type" },
+  { key: "disposition", label: "Disposition" },
+  { key: "plaintiff", label: "Plaintiff" },
+  { key: "defendant", label: "Defendant" },
+  { key: "attorneyForPlaintiff", label: "Attorney for Plaintiff" },
+  { key: "attorneyForDefendant", label: "Attorney for Defendant" }
 ];
 
-// timeStart arrives as a timezone-less ISO string (e.g. "2026-07-07T14:00:00").
-// Parse the wall-clock time directly so it renders the same regardless of the
-// viewer's timezone, e.g. "2:00 PM".
 function formatTime(iso: string): string {
   const match = iso.match(/T(\d{2}):(\d{2})/);
   if (!match) return iso || "—";
@@ -76,9 +80,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Fetch on mount. `load` sets state, but the initial values already match
-    // (loading: true) and the fetch result lands asynchronously, so there is no
-    // cascading render to worry about here.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
   }, [load]);
@@ -161,18 +162,46 @@ export default function Home() {
               {cases.map((c, i) => (
                 <tr
                   key={`${c.caseNumber}-${i}`}
-                  className="border-t border-neutral-200 dark:border-neutral-800"
-                >
-                  <td className="px-4 py-3">{c.caseName}</td>
+                  className="border-t border-neutral-200 dark:border-neutral-800">
+                  <td className="px-4 py-3">
+                    {c.caseName}
+                  </td>
                   <td className="whitespace-nowrap px-4 py-3 font-mono text-xs">
                     {c.caseNumber}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3">{c.roomID}</td>
-                  <td className="whitespace-nowrap px-4 py-3">{c.floorID}</td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    {c.floorID}
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    {c.roomID}
+                  </td>
                   <td className="whitespace-nowrap px-4 py-3">
                     {formatTime(c.timeStart)}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3">{c.judgeName}</td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    {c.judgeName}
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    [ Date filed ]
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    [ Case type ]
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    [ Disposition ]
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    [ Plaintiff ]
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    [ Defendant ]
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    [ Attorney for Plaintiff ]
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3">
+                    [ Attorney for Defendant ]
+                  </td>
                 </tr>
               ))}
             </tbody>
