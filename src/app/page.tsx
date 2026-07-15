@@ -10,13 +10,6 @@ const COLUMNS: { key: keyof Case; label: string }[] = [
   { key: "floorID", label: "Floor" },
   { key: "timeStart", label: "Hearing Time" },
   { key: "judgeName", label: "Judge" },
-  { key: "dateFiled", label: "Date FIled" },
-  { key: "caseType", label: "Case Type" },
-  { key: "disposition", label: "Disposition" },
-  { key: "plaintiff", label: "Plaintiff" },
-  { key: "defendant", label: "Defendant" },
-  { key: "attorneyForPlaintiff", label: "Attorney for Plaintiff" },
-  { key: "attorneyForDefendant", label: "Attorney for Defendant" }
 ];
 
 function formatTime(iso: string): string {
@@ -166,8 +159,10 @@ export default function Home() {
                   <td className="px-4 py-3">
                     {c.caseName}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 font-mono text-xs">
-                    {c.caseNumber}
+                  <td className="whitespace-nowrap px-4 py-3 font-mono text-xs underline">
+                    <a href={`https://www.courts.mo.gov/casenet/cases/newHeader.do?inputVO.courtId=CT31&inputVO.caseNumber=${c.caseNumber}`}>
+                      {c.caseNumber}
+                    </a>
                   </td>
                   <td className="whitespace-nowrap px-4 py-3">
                     {c.floorID}
@@ -180,27 +175,6 @@ export default function Home() {
                   </td>
                   <td className="whitespace-nowrap px-4 py-3">
                     {c.judgeName}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    [ Date filed ]
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    [ Case type ]
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    [ Disposition ]
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    [ Plaintiff ]
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    [ Defendant ]
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    [ Attorney for Plaintiff ]
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3">
-                    [ Attorney for Defendant ]
                   </td>
                 </tr>
               ))}
