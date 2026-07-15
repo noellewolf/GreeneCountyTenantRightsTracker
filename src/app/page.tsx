@@ -160,7 +160,7 @@ export default function Home() {
                     {c.caseName}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 font-mono text-xs underline">
-                    <a href={`https://www.courts.mo.gov/casenet/cases/newHeader.do?inputVO.courtId=CT31&inputVO.caseNumber=${c.caseNumber}`}>
+                    <a target="_blank" href={`https://www.courts.mo.gov/casenet/cases/newHeader.do?inputVO.courtId=CT31&inputVO.caseNumber=${c.caseNumber}`}>
                       {c.caseNumber}
                     </a>
                   </td>
